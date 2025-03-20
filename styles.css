@@ -1,130 +1,150 @@
-/* Resetowanie marginesów i paddingu */
+/* Resetowanie domyślnych styli */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Wygląd strony */
+/* Ustawienia główne */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #D4EDDA; /* Pastelowo zielone tło */
+    background-color: #c8e6c9; /* Pastelowy zielony */
     color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Pełna wysokość ekranu */
     text-align: center;
-    padding-top: 80px; /* Miejsce na pasek nawigacji */
+    padding-top: 70px; /* Zapobiega nachodzeniu treści na pasek */
 }
 
 /* Pasek nawigacyjny */
 .navbar {
-    background-color: #155724; /* Ciemnozielony pasek */
+    background-color: #2e7d32; /* Ciemnozielony */
+    padding: 15px 0;
+    text-align: center;
     position: fixed;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
     z-index: 1000;
-    text-align: center;
-    padding: 15px 0;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    padding: 14px 20px;
+    font-size: 18px;
+    padding: 12px 20px;
     display: inline-block;
-    font-weight: bold;
-    transition: background 0.3s;
 }
 
 .navbar a:hover {
-    background-color: #1F6D40;
+    background-color: #1b5e20;
     border-radius: 5px;
 }
 
-/* Główna zawartość stron */
-.content {
+/* Kontener na treść */
+.container, .content {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Strona kontaktowa */
+.contact-container {
     width: 90%;
     max-width: 800px;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 100px;
+    text-align: center;
 }
 
-/* Strona "O nas" */
-.about-container {
-    width: 90%;
-    max-width: 800px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-/* Kontener komentarzy */
-.comments-container {
-    width: 90%;
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-/* Lista komentarzy */
-.comment-list {
+/* Styl dla listy godzin otwarcia */
+.contact-container ul {
     list-style-type: none;
     padding: 0;
 }
 
-.comment-list li {
+.contact-container ul li {
     background: #f8f9fa;
-    margin: 10px 0;
+    margin: 5px 0;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 80%;
 }
 
-/* Przycisk */
-.comment-button {
-    background-color: #155724;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+/* Sekcja komentarzy */
+.comment-section {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.comment-box {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    padding: 10px;
+}
+
+.comment-btn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #2e7d32;
+    color: white;
     font-size: 16px;
-    display: block;
-    margin: 10px auto;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.comment-button:hover {
-    background-color: #1F6D40;
+.comment-btn:hover {
+    background-color: #1b5e20;
 }
 
-/* Dostosowanie do telefonów */
-@media screen and (max-width: 768px) {
-    body {
-        padding-top: 60px;
-    }
+/* Styl dla każdego komentarza */
+.comment {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: left;
+}
 
-    .navbar {
-        padding: 10px 0;
-    }
+/* Strona "O nas" */
+.about-container {
+    margin-top: 100px;
+    padding: 20px;
+    text-align: center;
+}
 
+/* Media queries dla wersji mobilnej */
+@media (max-width: 600px) {
     .navbar a {
+        display: block;
         padding: 10px;
-        font-size: 14px;
     }
 
-    .content, .about-container, .comments-container {
+    .container, .content {
         width: 95%;
+        padding: 15px;
+    }
+
+    .comment-box {
+        height: 80px;
+    }
+
+    .comment-btn {
+        width: 100%;
     }
 }
