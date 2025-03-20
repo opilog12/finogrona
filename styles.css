@@ -41,10 +41,10 @@ body {
     border-radius: 5px;
 }
 
-/* Kontener treści dla wszystkich stron */
+/* Kontener treści dla wszystkich stron (aby treść nie nachodziła na pasek nawigacyjny) */
 .content {
     max-width: 800px;
-    margin: 80px auto 20px; /* 80px od góry, aby pasek nawigacyjny nie zasłaniał */
+    margin: 120px auto 20px; /* 120px od góry, aby pasek nie zasłaniał */
     padding: 20px;
     background: white;
     border-radius: 8px;
@@ -52,10 +52,10 @@ body {
     text-align: center;
 }
 
-/* Poprawiona strona O nas */
+/* Strona O nas */
 .about-container {
     max-width: 800px;
-    margin: 100px auto; /* Wyśrodkowanie strony */
+    margin: 120px auto;
     padding: 20px;
     background: white;
     border-radius: 8px;
@@ -63,13 +63,7 @@ body {
     text-align: center;
 }
 
-/* Zapobiega nachodzeniu treści na ramkę */
-.about-container p {
-    margin-bottom: 15px;
-    line-height: 1.6; /* Poprawia czytelność */
-}
-
-/* Strona komentarzy */
+/* Komentarze */
 .comments-container {
     width: 50%;
     max-width: 600px;
@@ -78,7 +72,7 @@ body {
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: 100px auto;
+    margin: 120px auto;
 }
 
 /* Pole tekstowe */
@@ -135,10 +129,10 @@ body {
 
     .navbar a {
         padding: 10px;
-        font-size: 14px; /* Zmniejsza czcionkę */
+        font-size: 14px;
     }
 
     .content, .about-container, .comments-container {
-        width: 90%; /* Dopasowanie szerokości kontenera */
+        width: 90%;
     }
 }
