@@ -16,57 +16,21 @@
             <a href="contact.html">Kontakt</a>
         </nav>
     </header>
+
     <main>
         <h2>Podziel się swoją opinią!</h2>
         <textarea id="commentInput" placeholder="Napisz komentarz..." rows="4"></textarea><br>
         <button onclick="addComment()">Dodaj komentarz</button>
+
         <h2>Opinie klientów</h2>
         <ul id="commentList"></ul>
     </main>
 
-    <!-- Firebase -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "API_KEY",
-            authDomain: "finogrona-2acc5.firebaseapp.com",
-            projectId: "finogrona-2acc5",
-            storageBucket: "finogrona-2acc5.appspot.com",
-            messagingSenderId: "341989551043",
-            appId: "1:341989551043:web:4546bcc46ea7fc0d7ceb76",
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        function addComment() {
-            let commentInput = document.getElementById("commentInput").value.trim();
-            if (commentInput === "") return;
-            db.collection("comments").add({
-                text: commentInput,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                document.getElementById("commentInput").value = "";
-                loadComments();
-            });
-        }
-
-        function loadComments() {
-            let commentList = document.getElementById("commentList");
-            commentList.innerHTML = "";
-            db.collection("comments").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-                commentList.innerHTML = "";
-                snapshot.forEach(doc => {
-                    let li = document.createElement("li");
-                    li.textContent = doc.data().text;
-                    commentList.appendChild(li);
-                });
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", loadComments);
-    </script>
+    <!-- Skrypt obsługujący komentarze -->
+    <script src="script.js"></script>
 </body>
 </html>
