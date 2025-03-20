@@ -64,7 +64,52 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Styl dla mapy Google */
-iframe {
+/* Sekcja komentarzy */
+.comments-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
     border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.comment-box {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.comment-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comment-list li {
+    background: #f8f9fa;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styl dla przycisku dodawania komentarza */
+.comment-button {
+    background-color: #155724;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto;
+}
+
+.comment-button:hover {
+    background-color: #1F6D40;
 }
