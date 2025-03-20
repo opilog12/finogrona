@@ -1,0 +1,40 @@
+name: Add Comment
+
+on:
+  workflow_dispatch:  # Umożliwia ręczne wywołanie workflow, bez konieczności PR
+    inputs:
+      comment:
+        description: 'Komentarz do dodania'
+        required: true
+        default: 'Brak komentarza'
+
+jobs:
+  add-comment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Dodaj komentarz
+      run: |
+        COMMENT="${{ github.event.inputs.comment }}"
+        DATE=$(date +'%Y-%m-%d %H:%M:%S')
+        echo "Dodano komentarz: $COMMENT"
+
+        # Pobierz plik z komentarzami
+        COMMENTS_FILE="comments.json"
+        COMMENTS=$(cat $COMMENTS_FILE)
+
+        # Dodaj nowy komentarz
+        UPDATED_COMMENTS=$(echo "$COMMENTS" | jq ". + [{\"comment\": \"$COMMENT\", \"timestamp\": \"$DATE\"}]")
+
+        # Zapisz nowy plik z komentarzami
+        echo "$UPDATED_COMMENTS" > $COMMENTS_FILE
+
+        # Commit z nowym komentarzem
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add $COMMENTS_FILE
+        git commit -m "Dodano nowy komentarz"
+        git push
