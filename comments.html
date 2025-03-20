@@ -27,10 +27,67 @@
     </main>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js"></script>
 
     <!-- Skrypt obsługujący komentarze -->
-    <script src="script.js"></script>
+    <script type="module">
+        // Importuj niezbędne funkcje z Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+        // Konfiguracja Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4V0bkhm7nEFsZ0tvFHkOdnnmTwOmjNqY",
+            authDomain: "finogrona-5737f.firebaseapp.com",
+            projectId: "finogrona-5737f",
+            storageBucket: "finogrona-5737f.firebasestorage.app",
+            messagingSenderId: "546698739322",
+            appId: "1:546698739322:web:23d5486634b85c966905c3",
+            measurementId: "G-XP4BFHNSBB"
+        };
+
+        // Inicjalizacja Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // Funkcja do dodawania komentarza do Firestore
+        async function addComment() {
+            const commentInput = document.getElementById("commentInput").value.trim();
+            if (commentInput === "") return;
+
+            try {
+                // Dodawanie komentarza do Firestore
+                await addDoc(collection(db, "comments"), {
+                    text: commentInput,
+                    timestamp: new Date()
+                });
+                document.getElementById("commentInput").value = ""; // Czyszczenie pola po dodaniu komentarza
+            } catch (e) {
+                console.error("Błąd podczas dodawania komentarza: ", e);
+            }
+        }
+
+        // Funkcja do pobierania i wyświetlania komentarzy
+        function loadComments() {
+            const commentList = document.getElementById("commentList");
+            const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+
+            onSnapshot(q, (querySnapshot) => {
+                commentList.innerHTML = ""; // Czyścimy listę komentarzy
+                querySnapshot.forEach((doc) => {
+                    const li = document.createElement("li");
+                    li.textContent = doc.data().text;
+                    commentList.appendChild(li);
+                });
+            });
+        }
+
+        // Ładowanie komentarzy po załadowaniu strony
+        document.addEventListener("DOMContentLoaded", loadComments);
+    </script>
 </body>
 </html>
