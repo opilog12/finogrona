@@ -13,10 +13,6 @@ header {
     padding: 15px;
 }
 
-nav {
-    margin-top: 10px;
-}
-
 nav a {
     color: white;
     text-decoration: none;
@@ -29,15 +25,16 @@ main {
     text-align: center;
 }
 
+textarea {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px;
+}
+
 button {
     background-color: darkgreen;
     color: white;
     border: none;
     padding: 10px;
     cursor: pointer;
-}
-
-textarea {
-    width: 80%;
-    max-width: 500px;
 }
