@@ -4,39 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt - FinoGrona</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #d3f9d8; /* Jasnozielone tło */
-            color: #333;
-        }
-        h1, h2 {
-            color: #4CAF50; /* Ciemnozielony */
-        }
-        .navbar {
-            background-color: #4CAF50;
-            overflow: hidden;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .contact {
-            margin: 20px;
-        }
-        .contact p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -49,13 +17,37 @@
         <a href="contact.html">Kontakt</a>
     </div>
 
-    <!-- Sekcja kontaktowa -->
-    <div class="contact">
+    <!-- Treść strony kontaktowej -->
+    <div class="container">
         <h1>Kontakt</h1>
-        <p><strong>Lokalizacja:</strong> Paniówki, 44-177, ul. Zamkowa 12</p>
-        <p><strong>Email:</strong> <a href="mailto:FinoGrona@gmail.com">FinoGrona@gmail.com</a></p>
-        <p><strong>Telefon:</strong> +48 123 456 789</p>
-        <p>Zapraszamy do kontaktu! Jesteśmy otwarci na rezerwacje, współpracę oraz organizację wydarzeń.</p>
+        <p>Masz pytania? Chcesz zarezerwować stolik? Skontaktuj się z nami!</p>
+
+        <h2>📍 Lokalizacja</h2>
+        <p>Paniówki, ul. Zamkowa 12, 44-177</p>
+
+        <h2>📧 E-mail</h2>
+        <p><a href="mailto:FinoGrona@gmail.com">FinoGrona@gmail.com</a></p>
+
+        <h2>🕒 Godziny otwarcia</h2>
+        <ul>
+            <li>Poniedziałek - Czwartek: 16:00 - 23:00</li>
+            <li>Piątek - Sobota: 16:00 - 02:00</li>
+            <li>Niedziela: 16:00 - 22:00</li>
+        </ul>
+
+        <h2>📞 Telefon</h2>
+        <p>+48 123 456 789</p>
+
+        <!-- Mapa Google -->
+        <h2>🗺️ Jak do nas trafić?</h2>
+        <iframe 
+            src="https://www.google.com/maps?q=Paniówki,+Zamkowa+12,+Polska&output=embed" 
+            width="100%" 
+            height="300" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
     </div>
 
 </body>
