@@ -1,47 +1,44 @@
-// Konfiguracja Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyD8l6kQZFZHO9YXALnTJ-N_kBu61ma-02E",
-    authDomain: "finogrona-2acc5.firebaseapp.com",
-    projectId: "finogrona-2acc5",
-    storageBucket: "finogrona-2acc5.appspot.com",
-    messagingSenderId: "341989551043",
-    appId: "1:341989551043:web:4546bcc46ea7fc0d7ceb76",
-};
-
-// Inicjalizacja Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// Funkcja dodawania komentarza do Firestore
+// Funkcja do dodawania komentarza
 function addComment() {
-    let commentInput = document.getElementById("commentInput").value.trim();
-    if (commentInput === "") return;
+    const commentInput = document.getElementById("commentInput").value.trim();
+    if (commentInput === "") return; // Jeśli pole jest puste, nie dodawaj komentarza
 
-    db.collection("comments").add({
+    // Pobierz istniejące komentarze z LocalStorage lub ustaw pustą tablicę
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+    // Dodaj nowy komentarz do tablicy
+    comments.push({
         text: commentInput,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
-        document.getElementById("commentInput").value = ""; // Czyszczenie pola tekstowego
-        loadComments(); // Odświeżenie listy komentarzy
-    }).catch(error => {
-        console.error("Błąd podczas dodawania komentarza: ", error);
+        timestamp: new Date().toISOString() // Zapisać czas w formacie ISO
     });
+
+    // Zapisz zaktualizowaną tablicę komentarzy do LocalStorage
+    localStorage.setItem("comments", JSON.stringify(comments));
+
+    // Wyczyść pole tekstowe
+    document.getElementById("commentInput").value = "";
+
+    // Odśwież listę komentarzy
+    loadComments();
 }
 
-// Funkcja pobierania komentarzy i wyświetlania ich na stronie
+// Funkcja do ładowania komentarzy
 function loadComments() {
-    let commentList = document.getElementById("commentList");
+    const commentList = document.getElementById("commentList");
+
+    // Pobierz komentarze z LocalStorage
+    const comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+    // Wyczyść obecną listę komentarzy
     commentList.innerHTML = "";
 
-    db.collection("comments").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-        commentList.innerHTML = ""; // Czyścimy listę przed załadowaniem nowych danych
-        snapshot.forEach(doc => {
-            let li = document.createElement("li");
-            li.textContent = doc.data().text;
-            commentList.appendChild(li);
-        });
+    // Wyświetl wszystkie komentarze
+    comments.forEach((comment) => {
+        const li = document.createElement("li");
+        li.textContent = `${comment.text} (${new Date(comment.timestamp).toLocaleString()})`;
+        commentList.appendChild(li);
     });
 }
 
-// Nasłuchujemy na załadowanie strony i wczytujemy komentarze
+// Załaduj komentarze po załadowaniu strony
 document.addEventListener("DOMContentLoaded", loadComments);
