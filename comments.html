@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Nawigacja -->
+    <!-- Pasek nawigacji -->
     <div class="navbar">
         <a href="index.html">Strona Główna</a>
         <a href="about.html">O nas</a>
@@ -18,44 +18,16 @@
     </div>
 
     <!-- Sekcja komentarzy -->
-    <div class="comments-section">
+    <div class="comments-container">
         <h1>Komentarze</h1>
-        <p>Podziel się swoją opinią o naszym barze! (Komentarze zapisywane lokalnie w Twojej przeglądarce.)</p>
+        <p>Komentarze są widoczne **tylko lokalnie** na Twoim urządzeniu.</p>
 
-        <textarea id="commentInput" placeholder="Napisz komentarz..."></textarea>
-        <button onclick="addComment()">Dodaj komentarz</button>
+        <textarea id="comment-input" class="comment-box" placeholder="Napisz komentarz..."></textarea>
+        <button onclick="addComment()" class="comment-button">Dodaj komentarz</button>
 
-        <div id="commentsList"></div>
+        <ul id="comment-list" class="comment-list"></ul>
     </div>
 
-    <script>
-        function addComment() {
-            let comment = document.getElementById("commentInput").value;
-            if (comment.trim() === "") return;
-
-            let comments = JSON.parse(localStorage.getItem("comments")) || [];
-            comments.push(comment);
-            localStorage.setItem("comments", JSON.stringify(comments));
-
-            displayComments();
-            document.getElementById("commentInput").value = "";
-        }
-
-        function displayComments() {
-            let comments = JSON.parse(localStorage.getItem("comments")) || [];
-            let commentsList = document.getElementById("commentsList");
-            commentsList.innerHTML = "";
-
-            comments.forEach(comment => {
-                let commentDiv = document.createElement("div");
-                commentDiv.classList.add("comment");
-                commentDiv.innerText = comment;
-                commentsList.appendChild(commentDiv);
-            });
-        }
-
-        displayComments();
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
