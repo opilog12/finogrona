@@ -1,44 +1,28 @@
-// Funkcja do dodawania komentarza
+document.addEventListener("DOMContentLoaded", loadComments);
+
 function addComment() {
-    const commentInput = document.getElementById("commentInput").value.trim();
-    if (commentInput === "") return; // Jeśli pole jest puste, nie dodawaj komentarza
+    let commentInput = document.getElementById("comment-input");
+    let commentText = commentInput.value.trim();
 
-    // Pobierz istniejące komentarze z LocalStorage lub ustaw pustą tablicę
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    if (commentText !== "") {
+        let comments = JSON.parse(localStorage.getItem("comments")) || [];
+        comments.push(commentText);
+        localStorage.setItem("comments", JSON.stringify(comments));
 
-    // Dodaj nowy komentarz do tablicy
-    comments.push({
-        text: commentInput,
-        timestamp: new Date().toISOString() // Zapisać czas w formacie ISO
-    });
-
-    // Zapisz zaktualizowaną tablicę komentarzy do LocalStorage
-    localStorage.setItem("comments", JSON.stringify(comments));
-
-    // Wyczyść pole tekstowe
-    document.getElementById("commentInput").value = "";
-
-    // Odśwież listę komentarzy
-    loadComments();
+        commentInput.value = ""; // Wyczyść pole tekstowe
+        loadComments(); // Przeładuj listę komentarzy
+    }
 }
 
-// Funkcja do ładowania komentarzy
 function loadComments() {
-    const commentList = document.getElementById("commentList");
+    let commentList = document.getElementById("comment-list");
+    commentList.innerHTML = ""; // Wyczyść aktualne komentarze
 
-    // Pobierz komentarze z LocalStorage
-    const comments = JSON.parse(localStorage.getItem("comments")) || [];
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
 
-    // Wyczyść obecną listę komentarzy
-    commentList.innerHTML = "";
-
-    // Wyświetl wszystkie komentarze
-    comments.forEach((comment) => {
-        const li = document.createElement("li");
-        li.textContent = `${comment.text} (${new Date(comment.timestamp).toLocaleString()})`;
+    comments.forEach(comment => {
+        let li = document.createElement("li");
+        li.textContent = comment;
         commentList.appendChild(li);
     });
 }
-
-// Załaduj komentarze po załadowaniu strony
-document.addEventListener("DOMContentLoaded", loadComments);
