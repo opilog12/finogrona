@@ -5,26 +5,30 @@
     box-sizing: border-box;
 }
 
-/* Ogólny wygląd strony */
+/* Wygląd strony */
 body {
     font-family: Arial, sans-serif;
     background-color: #D4EDDA; /* Pastelowo zielone tło */
     color: black;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Pełna wysokość ekranu */
+    text-align: center;
+    padding-top: 80px; /* Miejsce na pasek nawigacji */
 }
 
 /* Pasek nawigacyjny */
 .navbar {
     background-color: #155724; /* Ciemnozielony pasek */
-    overflow: hidden;
-    padding: 15px 0;
-    text-align: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Pasek zawsze na wierzchu */
+    z-index: 1000;
+    text-align: center;
+    padding: 15px 0;
 }
 
 .navbar a {
@@ -37,59 +41,47 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #1F6D40; /* Jaśniejszy zielony */
+    background-color: #1F6D40;
     border-radius: 5px;
 }
 
-/* Kontener treści dla wszystkich stron (aby treść nie nachodziła na pasek nawigacyjny) */
+/* Główna zawartość stron */
 .content {
+    width: 90%;
     max-width: 800px;
-    margin: 120px auto 20px; /* 120px od góry, aby pasek nie zasłaniał */
-    padding: 20px;
     background: white;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    margin-top: 20px;
 }
 
-/* Strona O nas */
+/* Strona "O nas" */
 .about-container {
+    width: 90%;
     max-width: 800px;
-    margin: 120px auto;
-    padding: 20px;
     background: white;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    margin-top: 20px;
 }
 
-/* Komentarze */
+/* Kontener komentarzy */
 .comments-container {
-    width: 50%;
+    width: 90%;
     max-width: 600px;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 120px auto;
-}
-
-/* Pole tekstowe */
-.comment-box {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
+    margin-top: 20px;
 }
 
 /* Lista komentarzy */
 .comment-list {
     list-style-type: none;
     padding: 0;
-    text-align: center;
 }
 
 .comment-list li {
@@ -100,7 +92,7 @@ body {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Przycisk dodawania komentarza */
+/* Przycisk */
 .comment-button {
     background-color: #155724;
     color: white;
@@ -117,10 +109,10 @@ body {
     background-color: #1F6D40;
 }
 
-/* Responsywność (dla telefonów) */
+/* Dostosowanie do telefonów */
 @media screen and (max-width: 768px) {
     body {
-        padding-top: 60px; /* Dodaje miejsce na pasek nawigacji */
+        padding-top: 60px;
     }
 
     .navbar {
@@ -133,6 +125,6 @@ body {
     }
 
     .content, .about-container, .comments-container {
-        width: 90%;
+        width: 95%;
     }
 }
