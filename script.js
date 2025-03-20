@@ -22,7 +22,7 @@ function addComment() {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
         document.getElementById("commentInput").value = ""; // Czyszczenie pola tekstowego
-        loadComments(); // Przeładowanie listy komentarzy
+        loadComments(); // Odświeżenie listy komentarzy
     }).catch(error => {
         console.error("Błąd podczas dodawania komentarza: ", error);
     });
